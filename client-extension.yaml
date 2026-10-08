@@ -1,0 +1,21 @@
+assemble:
+    - from: dist
+      into: static
+
+generate-access-token-ce:
+    cssURLs:
+        - index.css
+    friendlyURLMapping: generate-access-token
+    htmlElementName: generate-access-token
+    instanceable: true
+    name: Generate Access Token
+    portletCategoryName: 4Bees
+    properties:
+        client-id: ""
+        client-secret: ""
+        liferay-portal-url: ""
+        oauth2-authorization-url: /o/oauth2/authorize
+    type: customElement
+    urls:
+        - index.js
+    useESM: true
