@@ -28,7 +28,20 @@ Ablauf:
 ```powershell
 cd C:\Users\dmetz\Liferay-DXP2026q3\Liferay-DXP2026q3
 .\gradlew.bat :client-extensions:generate-access-token-ce:deploy
+
+Wenn die Client-Extension im Docker Container cloud4Bees-docker deployed werden soll:
+.\gradlew.bat :client-extensions:generate-access-token-ce:deploy "-Pauto.deploy.dir=C:\Users\dmetz\cloud4Bees- docker\liferay_deploy"
 ```
+
+
+Wenn du künftig standardmäßig in die Docker-Instanz deployen möchtest, ergänze in der gradle.properties:
+
+auto.deploy.dir=C:\\Users\\dmetz\\cloud4Bees- docker\\liferay_deploy
+
+In einer .properties-Datei müssen die Backslashes verdoppelt werden. Danach genügt wieder der normale Aufruf:
+.\gradlew.bat :client-extensions:generate-access-token-ce:deploy
+
+
 
 Der Gradle-Task führt `npm install` und `npm run build` aus und kopiert
 `generate-access-token-ce.zip` nach `bundles\osgi\client-extensions`. Ein Neustart
