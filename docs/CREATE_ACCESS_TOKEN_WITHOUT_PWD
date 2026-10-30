@@ -1,0 +1,27 @@
+# Access-Token ohne Benutzerpasswort erstellen
+
+Ein Access-Token lässt sich auch dann erstellen, wenn das Passwort des Zielbenutzers nicht bekannt ist. Verwenden Sie dazu den **Client Credentials Grant**. Dieser Ablauf benötigt weder das Benutzerpasswort noch eine interaktive Anmeldung.
+
+## Voraussetzungen
+
+Hinterlegen Sie den gewünschten Benutzer als Client Credentials User:
+
+1. Erstellen oder öffnen Sie die OAuth-2.0-Anwendung in der OAuth-2-Administration.
+2. Wählen Sie im Feld **Client Credentials User** den Benutzer aus, in dessen Kontext die API-Aufrufe ausgeführt werden sollen.
+
+## Token anfordern
+
+Fordern Sie das Token mit der Client-ID und dem Client-Secret der OAuth-2.0-Anwendung an. Ein Benutzername oder Benutzerpasswort wird nicht benötigt:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=IHRE_CLIENT_ID" \
+  -d "client_secret=IHR_CLIENT_SECRET" \
+  http://localhost:8080/o/oauth2/token
+```
+
+## Ergebnis
+
+Liferay stellt ein Access-Token aus. Da der OAuth-2.0-Client dem ausgewählten Benutzer zugeordnet ist, werden API-Aufrufe mit diesem Token im Kontext dieses Benutzers ausgeführt. So können Sie Tokens automatisiert erstellen, ohne das Passwort des Zielbenutzers zu kennen.
